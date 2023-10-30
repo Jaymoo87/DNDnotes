@@ -12,9 +12,10 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { ChevronsLeftRight } from "lucide-react";
-import { SignOutButton } from "@clerk/clerk-react";
+import { SignOutButton, useUser } from "@clerk/clerk-react";
 
 const UserItem = () => {
+  const { user } = useUser();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

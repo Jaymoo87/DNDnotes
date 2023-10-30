@@ -1,8 +1,6 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
-import React from "react";
-
 export default defineSchema({
   documents: defineTable({
     title: v.string(),
