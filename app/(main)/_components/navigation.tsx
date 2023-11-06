@@ -3,14 +3,18 @@
 import React, { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import UserItem from "./user-items";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { Item } from "./item";
+
+import { cn } from "@/lib/utils";
+
 import { toast } from "sonner";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
+
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import UserItem from "./user-items";
+import { Item } from "./item";
 
 import DocumentList from "./document-list";
 
@@ -140,6 +144,15 @@ export const Navigation = () => {
         </div>
         <div className="mt-4">
           <DocumentList />
+          <Item onClick={handleCreate} icon={Plus} label="Add a Memory" />
+          <Popover>
+            <PopoverTrigger className="w-full mt-4">
+              <Item label="Trash" icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent className="p-0 w-72" side={isMobile ? "bottom" : "right"}>
+              <p>Forgotten Memories</p>
+            </PopoverContent>
+          </Popover>
         </div>
         <div
           onMouseDown={handleMouseDown}
