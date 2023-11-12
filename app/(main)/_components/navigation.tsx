@@ -3,7 +3,7 @@
 import React, { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
@@ -20,8 +20,10 @@ import { Item } from "./item";
 import UserItem from "./user-items";
 import DocumentList from "./document-list";
 import TrashBox from "./trash-box";
+import Navbar from "./Navbar";
 
 export const Navigation = () => {
+  const params = useParams();
   const search = useSearch();
   const settings = useSettings();
   const pathname = usePathname();
@@ -173,9 +175,13 @@ export const Navigation = () => {
           isMobile && "left-0 w-full"
         )}
       >
-        <nav className="bg-transparent px-3 py-2 w-full">
-          {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-forground" />}
-        </nav>
+        {!!params.documentId ? (
+          <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
+        ) : (
+          <nav className="bg-transparent px-3 py-2 w-full">
+            {isCollapsed && <MenuIcon onClick={resetWidth} role="button" className="h-6 w-6 text-muted-forground" />}
+          </nav>
+        )}
       </div>
     </>
   );
