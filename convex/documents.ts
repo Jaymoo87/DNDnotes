@@ -294,6 +294,7 @@ export const removeIcon = mutation({
 
 export const removeCoverImage = mutation({
   args: { id: v.id("documents") },
+
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
@@ -315,6 +316,7 @@ export const removeCoverImage = mutation({
     const document = await ctx.db.patch(args.id, {
       coverImage: undefined,
     });
+
     return document;
   },
 });
