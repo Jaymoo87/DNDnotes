@@ -10,7 +10,7 @@ import { api } from "@/convex/_generated/api";
 import { cn } from "@/lib/utils";
 
 import { toast } from "sonner";
-import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
+import { ChevronsLeft, HomeIcon, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
 
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { useSearch } from "@/hooks/use-search";
@@ -71,6 +71,9 @@ export const Navigation = () => {
     }
   };
 
+  const backHome = () => {
+    router.push("/");
+  };
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -150,6 +153,7 @@ export const Navigation = () => {
           <UserItem />
           <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item label="Settings" icon={Settings} onClick={settings.onOpen} />
+          <Item onClick={backHome} label="Home Page" icon={HomeIcon} />
           <Item onClick={handleCreate} label="New Memory" icon={PlusCircle} />
         </div>
         <div className="mt-4">

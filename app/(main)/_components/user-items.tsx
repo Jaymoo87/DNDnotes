@@ -11,11 +11,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { ChevronsLeftRight } from "lucide-react";
+import { ChevronsLeftRight, HomeIcon } from "lucide-react";
 import { SignOutButton, useUser } from "@clerk/clerk-react";
+import { useRouter } from "next/navigation";
 
 const UserItem = () => {
+  const router = useRouter();
   const { user } = useUser();
+
+  const backHome = () => {
+    router.push("/");
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -39,6 +46,9 @@ const UserItem = () => {
               <Avatar className="h-8 w-8">
                 <AvatarImage src={user?.imageUrl} />
               </Avatar>
+            </div>
+            <div role="button">
+              <HomeIcon onClick={backHome} className="h-4 w-4 m-4" />
             </div>
             <div className="space-y-1">
               <p className="text-sm line-clamp-1">{user?.fullName}&apos;s Notes</p>
