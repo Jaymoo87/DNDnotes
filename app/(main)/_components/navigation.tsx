@@ -3,7 +3,7 @@
 import React, { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
@@ -23,6 +23,7 @@ import TrashBox from "./trash-box";
 import Navbar from "./Navbar";
 
 export const Navigation = () => {
+  const router = useRouter();
   const params = useParams();
   const search = useSearch();
   const settings = useSettings();
@@ -114,6 +115,8 @@ export const Navigation = () => {
   const handleCreate = () => {
     const promise = create({
       title: "untitled",
+    }).then((documentId) => {
+      router.push(`/documents/${documentId}`);
     });
 
     toast.promise(promise, {
