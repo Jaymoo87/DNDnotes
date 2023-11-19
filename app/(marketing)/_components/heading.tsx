@@ -15,7 +15,7 @@ export const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
 
   return (
-    <div className="max-w-3xl space-y-4">
+    <div className="max-w-3xl space-y-4 mt-24">
       <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
         Plan your next move, never forget the moves you make. <br /> Take your <span className="underline">Notes</span>
       </h1>
